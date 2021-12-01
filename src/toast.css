@@ -1,0 +1,33 @@
+.Toastify__toast-container {
+    width: auto !important;
+    min-width: 200px !important;
+    max-width: 600px !important;
+    min-height: 10px !important;
+    margin-top: 70px;
+  }
+  .toastBody {
+    font-size: 14px;
+    font-family: var(--body-font);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .Toastify__toast {
+    min-height: 10px !important;
+    font-family: "Roboto";
+  }
+  .toast__msg {
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    align-items: center;
+  }
+  .toast__msg-icon {
+    font-size: 22px !important;
+    margin-right: 8px;
+  }
+  .producttds {
+    text-align: start;
+  }
+  .producttds > span {
+    margin-left: 15px !important;
+  }
