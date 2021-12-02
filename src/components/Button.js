@@ -19,6 +19,7 @@ export const ButtonContainer = styled.button`
       props.cart ? "var(--mainYellow)" : "var(--lightBlue)"};
     color: var(--mainBlue);
   }
+ 
   &:focus {
     outline: none;
   }

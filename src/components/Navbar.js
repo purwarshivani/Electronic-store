@@ -6,8 +6,11 @@ import { ButtonContainer } from "./Button";
 import { useSelector, useDispatch } from "react-redux";
 
 import { addToCarts } from "./pages/action";
+import useHook from "./useHook";
+import CartDailog from "./CartDailog";
 const NavWrapper = styled.nav`
   background: var(--mainBlue);
+
   .nav-link {
     color: var(--mainWhite) !important;
     font-size: 1.3rem;
@@ -17,9 +20,18 @@ const NavWrapper = styled.nav`
 
 export default function Navbar() {
   const dispatch = useDispatch();
-
+  const { ref } = useHook(false);
+  const { visible } = useSelector((state) => state.ProdcutReducer);
   return (
-    <NavWrapper className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
+    <NavWrapper
+      className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5"
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        position: "relative",
+      }}
+    >
       <Link to="/">
         <img src={logo} alt="store" className="navbar-brand" />
       </Link>
@@ -30,14 +42,17 @@ export default function Navbar() {
           </Link>
         </li>
       </ul>
-      <Link to="/cart" className="ml-auto">
-        <ButtonContainer>
+      <div className="navbar__cart">
+        <ButtonContainer ref={ref}>
           <span className="mr-2">
             <i className="fas fa-cart-plus" />
           </span>
           My Cart
         </ButtonContainer>
-      </Link>
+        <div className={visible ? "cart cart__show" : "cart"}>
+          <CartDailog />
+        </div>
+      </div>
     </NavWrapper>
   );
 }

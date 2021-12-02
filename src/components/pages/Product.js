@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { getallimage } from "./source";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { Alert } from "bootstrap";
 export default function Product({ product, addToCart }) {
   const { id, name, image, price, inCart, stock, category, createDate } =
     product;
@@ -14,7 +16,7 @@ export default function Product({ product, addToCart }) {
   let currency = cy.toFixed(0);
   const { cart } = useSelector((state) => state.ProdcutReducer);
   const checkCart = () => {
-    const isThere = cart.some((el) => el.id === id && el.stock === 0);
+    const isThere = cart.some((el) => el.product.id === id);
     console.log("isthere", isThere);
     return isThere;
   };
@@ -50,10 +52,13 @@ export default function Product({ product, addToCart }) {
               </h6>
               <button
                 className="cart-btn"
-                disabled={checkCart()}
+                // disabled={checkCart()}
                 onClick={() => {
-                  if (stock > 0) {
+                 
+                  if (!checkCart()) {
                     addToCart(product);
+                  }else{
+                    alert("product is already in cart")
                   }
                 }}
               >

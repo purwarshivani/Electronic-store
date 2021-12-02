@@ -1,0 +1,28 @@
+.navbar__cart{
+    position: relative;
+    &:hover .cart{
+        display: block;
+    }
+}
+
+.cart{
+width:30%;
+height:100vh;
+position: fixed;
+top: 0px;
+right: 0;
+background-color: white;
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+z-index: 200;
+display: none;
+border-top-left-radius: 6px;
+border-bottom-left-radius: 6px;
+&__show{
+    display: block;
+}
+&__image{
+    height: 120px;
+    width: 100%;
+    object-fit: contain;
+}
+}

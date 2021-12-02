@@ -21,3 +21,34 @@ export const addToCarts = (data) => {
     payload: data,
   };
 };
+export const setCartVisible = (data) => {
+  return {
+    type: "CART_DROPDOWN_VISIBLE",
+  };
+};
+
+export const updateCart = (data) => {
+  return {
+    type: "CART_UPDATE",
+    payload: data,
+  };
+};
+
+export const removeCartProduct = (data) => {
+  return {
+    type: "REMOVE_CART_PRODUCT",
+    payload: data,
+  };
+};
+
+export function seCartData() {
+  return {
+    type: "SET_CART_CHECKOUT",
+  };
+}
+
+export function shipping() {
+  return {
+    type: "SET_SHIIPNG_CHECKOUT",
+  };
+}

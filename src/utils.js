@@ -4,6 +4,13 @@ import { get, pickBy } from "lodash";
 
 const getArr = (obj, ltr) => get(obj, ltr) || [];
 
+const getCartItem = () => {
+  const storedCart = localStorage.getItem("Cart Data");
+  if (!storedCart) return null;
+
+  return JSON.parse(storedCart);
+};
+
 const cleanObject = (object) =>
   pickBy(
     object,
@@ -24,4 +31,4 @@ class ProtectedComponents extends Component {
   }
 }
 
-export { getArr, PrivateRoute, ProtectedComponents, cleanObject };
+export { getArr, PrivateRoute, ProtectedComponents, cleanObject, getCartItem };
