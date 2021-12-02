@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getAllProduct,
-  getCart,
-  addToCarts,
-  setCartVisible,
-  sortByCaretory,
-} from "./action";
+import { getAllProduct, addToCarts, setCartVisible } from "./action";
 import Title from "../Title";
-import { ProductConsumer } from "../../context";
+// import { ProductConsumer } from "../../context";
 import Product from "./Product";
-import Cart from "../Cart/Cart";
+// import Cart from "../Cart/Cart";
 
 function Motor() {
   const [detailProduct, setDetailProduct] = useState({});

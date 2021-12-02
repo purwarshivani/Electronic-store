@@ -35,6 +35,17 @@ export default function Checkout() {
     dispatch(shipping());
     alert(`Thankyou ${values.name}`);
   };
+  const getTotalAmount = (data) => {
+    console.log("data", data);
+
+    const total = data.reduce(
+      (value, el) =>
+        el.product.price.split("$")[1] * el.quantity * 120.46 + value,
+      0
+    );
+    console.log("total", total);
+    return total;
+  };
   return (
     <div className="container" style={{ marginTop: "2%" }}>
       <div className="row">
@@ -51,7 +62,8 @@ export default function Checkout() {
             </thead>
             <tbody>
               {data.map((pr, i) => {
-                const subtotal = pr.product.price * pr.quantity;
+                const subtotal =
+                  pr.product.price.split("$")[1] * pr.quantity * 120.46;
                 return (
                   <tr>
                     <th scope="row">{i + 1}</th>
@@ -65,16 +77,14 @@ export default function Checkout() {
                     </td>
                     <td>{pr.product.name}</td>
                     <td>{pr.quantity}</td>
-                    <td>
-                      {pr.product.price} {subtotal}
-                    </td>
+                    <td>Rs {subtotal}</td>
                   </tr>
                 );
               })}
               <tr>
                 <th scope="row">3</th>
                 <td colspan="2">TOTAL AMOUNT</td>
-                <td></td>
+                <td>{data ? getTotalAmount(data) : "0"}</td>
               </tr>
             </tbody>
           </table>

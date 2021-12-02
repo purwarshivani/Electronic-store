@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ProductConsumer } from "../../context";
+
 import PropTypes from "prop-types";
 import moment from "moment";
-import { getallimage } from "./source";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import { Alert } from "bootstrap";
 export default function Product({ product, addToCart }) {
   const { id, name, image, price, inCart, stock, category, createDate } =
     product;
@@ -23,56 +20,52 @@ export default function Product({ product, addToCart }) {
   return (
     <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
       <div className="card">
-        <ProductConsumer>
-          {(value) => (
-            <div
-              className="img-container p-5"
-              // onClick={() => value.handleDetail(id)}
-            >
-              <Link to="/details">
-                <img
-                  style={{
-                    width: "100%",
-                    height: "120px",
-                    objectFit: "contain",
-                  }}
-                  src={`https://electronic-ecommerce.herokuapp.com/${image}`}
-                  alt="product"
-                  className="card-img-top"
-                />
-              </Link>
-              <h6
-                style={{
-                  textAlign: "center",
-                  textTransform: "capitalize",
-                  textDecorationLine: "underline",
-                }}
-              >
-                {category[1]}
-              </h6>
-              <button
-                className="cart-btn"
-                // disabled={checkCart()}
-                onClick={() => {
-                 
-                  if (!checkCart()) {
-                    addToCart(product);
-                  }else{
-                    alert("product is already in cart")
-                  }
-                }}
-              >
-                {stock === 0 ? (
-                  <i className="fas fa-cart-plus" disabled>
-                    Out of stock
-                  </i>
-                ) : (
-                  <i className="fas fa-cart-plus" />
-                )}
-              </button>
-            </div>
-          )}
-        </ProductConsumer>
+        <div
+          className="img-container p-5"
+          // onClick={() => value.handleDetail(id)}
+        >
+          <Link to="/details">
+            <img
+              style={{
+                width: "100%",
+                height: "120px",
+                objectFit: "contain",
+              }}
+              src={`https://electronic-ecommerce.herokuapp.com/${image}`}
+              alt="product"
+              className="card-img-top"
+            />
+          </Link>
+          <h6
+            style={{
+              textAlign: "center",
+              textTransform: "capitalize",
+              textDecorationLine: "underline",
+            }}
+          >
+            {category[1]}
+          </h6>
+          <button
+            className="cart-btn"
+            // disabled={checkCart()}
+            onClick={() => {
+              if (!checkCart()) {
+                addToCart(product);
+              } else {
+                alert("product is already in cart");
+              }
+            }}
+          >
+            {stock === 0 ? (
+              <i className="fas fa-cart-plus" disabled>
+                Out of stock
+              </i>
+            ) : (
+              <i className="fas fa-cart-plus" />
+            )}
+          </button>
+        </div>
+
         {/* card footer */}
         <div className="card-footer d-flex justify-content-between">
           <p className="align-self-center mb-0">{name}</p>
