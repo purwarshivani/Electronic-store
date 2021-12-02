@@ -13,7 +13,12 @@ const reducer = (state = initialState, action) => {
     case "GET_ALL_PRODUCT_PENDING":
       return { ...state, fetchState: 1 };
     case "GET_ALL_PRODUCT_FULFILLED":
-      return { ...state, fetchState: 2, products: action.payload.data };
+      const dataList = {
+        ...state,
+        fetchState: 2,
+        products: action.payload.data,
+      };
+      return dataList;
     case "GET_ALL_PRODUCT_REJECTED":
       return { ...state, fetchState: 3 };
 

@@ -9,8 +9,6 @@ export default function Product({ product, addToCart }) {
   const { id, name, image, price, inCart, stock, category, createDate } =
     product;
 
-  let cy = price.split("$")[1] * 120.46;
-  let currency = cy.toFixed(0);
   const { cart } = useSelector((state) => state.ProdcutReducer);
   const checkCart = () => {
     const isThere = cart.some((el) => el.product.id === id);
@@ -72,16 +70,16 @@ export default function Product({ product, addToCart }) {
           <p className="text-blue font-italic mb-0">
             <span className="mr-8"></span>
             {"Rs."}
-            {currency.toString().split(".")[0].length > 3
-              ? currency
+            {price.toString().split(".")[0].length > 3
+              ? price
                   .toString()
-                  .substring(0, currency.toString().split(".")[0].length - 3)
+                  .substring(0, price.toString().split(".")[0].length - 3)
                   .replace(/\B(?=(\d{2})+(?!\d))/g, ",") +
                 "," +
-                currency
+                price
                   .toString()
-                  .substring(currency.toString().split(".")[0].length - 3)
-              : currency.toString()}
+                  .substring(price.toString().split(".")[0].length - 3)
+              : price.toString()}
           </p>
         </div>
         <div className="card-footer d-flex justify-content-between">

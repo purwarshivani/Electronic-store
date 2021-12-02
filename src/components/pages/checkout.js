@@ -34,16 +34,17 @@ export default function Checkout() {
   const SubmitShiiping = (values) => {
     dispatch(shipping());
     alert(`Thankyou ${values.name}`);
+
+    history.goBack();
   };
   const getTotalAmount = (data) => {
     console.log("data", data);
 
     const total = data.reduce(
-      (value, el) =>
-        el.product.price.split("$")[1] * el.quantity * 120.46 + value,
+      (value, el) => el.product.price * el.quantity + value,
       0
     );
-    console.log("total", total);
+
     return total;
   };
   return (
@@ -62,8 +63,7 @@ export default function Checkout() {
             </thead>
             <tbody>
               {data.map((pr, i) => {
-                const subtotal =
-                  pr.product.price.split("$")[1] * pr.quantity * 120.46;
+                const subtotal = pr.product.price * pr.quantity;
                 return (
                   <tr>
                     <th scope="row">{i + 1}</th>
@@ -89,7 +89,7 @@ export default function Checkout() {
             </tbody>
           </table>
         </div>
-        <div className="col-sm-4 bg-warning">
+        <div className="col-sm-4 bg-blue">
           <p>Shipping Form </p>
           <Formik
             initialValues={{
@@ -105,38 +105,73 @@ export default function Checkout() {
           >
             {({ errors, touched }) => (
               <Form>
-                <label>FullName</label>
-                <Field name="name" />
-                {errors.name && touched.name ? (
-                  <div style={{ color: "red" }}>{errors.name}</div>
-                ) : null}
-                <br />
-                <label>Billing Address</label>
-                <Field name="billing" />
-                {errors.billing && touched.billing ? (
-                  <div style={{ color: "red" }}>{errors.billing}</div>
-                ) : null}
-                <br />
-                <label>Delivery Address</label>
-                <Field name="delivery" type="delivery" />
-                {errors.delivery && touched.delivery ? (
-                  <div style={{ color: "red" }}>{errors.delivery}</div>
-                ) : null}
+                <div className="row">
+                  <div className="col-4">
+                    <label>FullName</label>
+                  </div>
+                  <div className="col-4">
+                    <Field name="name" />
+                    {errors.name && touched.name ? (
+                      <div style={{ color: "red" }}>{errors.name}</div>
+                    ) : null}
+                  </div>
+                </div>
 
                 <br />
-                <label>Current Date</label>
-                <Field
-                  name="dat"
-                  value={new Date().toLocaleString() + ""}
-                  type="dat"
-                />
-                <label>phoneNumber</label>
-                <Field name="phoneNumber" type="phoneNumber" />
-                {errors.phoneNumber && touched.phoneNumber ? (
-                  <div style={{ color: "red" }}>{errors.phoneNumber}</div>
-                ) : null}
+                <div className="row">
+                  <div className="col-4">
+                    <label>Billing Address</label>
+                  </div>
+                  <div className="col-4">
+                    <Field name="billing" />
+                    {errors.billing && touched.billing ? (
+                      <div style={{ color: "red" }}>{errors.billing}</div>
+                    ) : null}
+                  </div>
+                </div>
 
-                <button type="submit" onClick={() => history.goBack()}>
+                <br />
+
+                <div className="row">
+                  <div className="col-4">
+                    <label>Delivery Address</label>
+                  </div>
+                  <div className="col-4">
+                    <Field name="delivery" type="delivery" />
+                    {errors.delivery && touched.delivery ? (
+                      <div style={{ color: "red" }}>{errors.delivery}</div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <br />
+
+                <div className="row">
+                  <div className="col-4">
+                    <label>Current Date</label>
+                  </div>
+                  <div className="col-4">
+                    <Field
+                      name="dat"
+                      value={new Date().toLocaleString() + ""}
+                      type="dat"
+                    />
+                  </div>
+                </div>
+                <br />
+                <div className="row">
+                  <div className="col-4">
+                    <label>phoneNumber</label>
+                  </div>
+                  <div className="col-4">
+                    <Field name="phoneNumber" type="phoneNumber" />
+                    {errors.phoneNumber && touched.phoneNumber ? (
+                      <div style={{ color: "red" }}>{errors.phoneNumber}</div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <button type="submit" className="btn btn-success">
                   Confirm
                 </button>
               </Form>

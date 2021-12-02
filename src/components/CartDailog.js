@@ -46,15 +46,12 @@ const CartDailog = () => {
   const checkout = () => {
     dispatch(seCartData());
   };
-  let cy;
-  let currency;
+
   return (
     <div className="container p-3">
       <h4>My Cart</h4>
       {cart.length > 0 &&
         cart.map((el) => {
-          cy = el.product.price.split("$")[1] * 120.46;
-          currency = cy.toFixed(0);
           return (
             <div className="row" key={el.product.id}>
               <div className="col-4">
@@ -66,21 +63,21 @@ const CartDailog = () => {
 
                   <h6>
                     RS.
-                    {currency.toString().split(".")[0].length > 3
-                      ? currency
+                    {el.product.price.toString().split(".")[0].length > 3
+                      ? el.product.price
                           .toString()
                           .substring(
                             0,
-                            currency.toString().split(".")[0].length - 3
+                            el.product.price.toString().split(".")[0].length - 3
                           )
                           .replace(/\B(?=(\d{2})+(?!\d))/g, ",") +
                         "," +
-                        currency
+                        el.product.price
                           .toString()
                           .substring(
-                            currency.toString().split(".")[0].length - 3
+                            el.product.price.toString().split(".")[0].length - 3
                           )
-                      : currency.toString()}
+                      : el.product.price.toString()}
                   </h6>
                   <div className="row">
                     <div className="col-4">

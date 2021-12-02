@@ -3,7 +3,7 @@ import * as source from "./source";
 export function getAllProduct() {
   return {
     type: "GET_ALL_PRODUCT",
-    payload: source.getAllProduct(),
+    payload: source.getAllProdu(),
   };
 }
 
